@@ -23,7 +23,9 @@ def load_dataset(dataset_name_list):
         result.append(temp)
     return result
 
+
 import os
+
 if __name__ == "__main__":
     standard_dict = pd.read_excel("./data/제품 분류 기준(전송용).xlsx").to_dict("records")
     mapping_dict = pd.read_excel("./data/원료 번역.xlsx")
@@ -42,7 +44,12 @@ if __name__ == "__main__":
             #     data["원료 성분"] = data["원료 성분"].replace(".", "").split(",")
             try:
                 data["원료 성분"] = (
-                    data["원료 성분"].replace(".", "").replace("|||", ",").replace('(',',').replace(')',',').split(",")
+                    data["원료 성분"]
+                    .replace(".", "")
+                    .replace("|||", ",")
+                    .replace("(", ",")
+                    .replace(")", ",")
+                    .split(",")
                 )
                 data["원료 성분"] = [
                     word_translater.word_translater(translate_dict, x)
@@ -64,12 +71,12 @@ if __name__ == "__main__":
         standard_dict, mapping_dict, dataset_list
     )
     with open("test.json", "w", encoding="utf-8-sig") as f:
-        json.dump(dataset_list, f, ensure_ascii=False)
+        json.dump(result, f, ensure_ascii=False)
 
-    for dataset in dataset_list:
-        for data in dataset:
-            if data['대분류'] == '프로틴':
-                print(data['중분류'])
-                print(data['소분류'])
-                print(data['원료 성분'])
-                input()
+    # for dataset in dataset_list:
+    #     for data in dataset:
+    #         if data["대분류"] == "프로틴":
+    #             print(data["중분류"])
+    #             print(data["소분류"])
+    #             print(data["원료 성분"])
+    #             input()

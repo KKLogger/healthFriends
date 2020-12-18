@@ -7,9 +7,9 @@ def word_translater(dict_data, word):
     :param word: 번역(매핑)할 단어
     :return: translated word
     """
-    result = word
+    result = word.lower()
     for data in dict_data:
-        if word in data["이명"]:
+        if word.lower() in data["이명"]:
             result = data["통일"]
     return result
 
@@ -32,4 +32,5 @@ def get_translate_dict(df):
             data["이명"] = [""]
         else:
             data["이명"] = data["이명"].split("\n")
+            data['이명'] = [x.lower() for x in data['이명']]
     return dict_data

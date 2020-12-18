@@ -1,5 +1,5 @@
 import pandas as pd
-
+import re
 """ dataset_list -> data로 바꾸기 하나의 데이터를 어떤 대,중,소 분류를 갖는지 반환"""
 
 #
@@ -187,9 +187,16 @@ def small_classificate(standard_dict, mapping_dict, dataset_list):
     ban_list = list()
     for item in mapping_dict[947:]:
         ban_list.append(item["통일"])
-    # 분류 시작
     for dataset in dataset_list:
         for data in dataset:
+            # 성분 ( 단백질, 탄수화물 단위 통일 및 Nan Pass )
+            if type(data['단백질(g)']) == float or type(data['총 탄수화물(g)']) == float:
+                data['단백질(g)'] = 3
+                data['총 탄수화물(g)'] = 1
+            else:
+                data['단백질(g)'] = re.findall('\d+',data['단백질(g)'])
+                data['총 탄수화물(g)'] = re.findall('\d+',data['총 탄수화물(g)'])
+            # 분류 시작
             if bool(list(set(data["원료 성분"]) & set(ban_list))):  # 반입금지
                 result["반입금지"].append(data["제품명"])
                 data["대분류"] = "반입금지"
@@ -238,6 +245,10 @@ def small_classificate(standard_dict, mapping_dict, dataset_list):
                     data["중븐류"] = "RTD/드링크"
                     data["소분류"] = "RTD/드링크"
                     result["RTD/드링크"] = data["제품명"]
+                elif data['단백질(g)'] <= data['총 탄수화물(g)'] * 2:
+                    data['중분류']  = '식사대용/게이너'
+                    data['소분류'] = '식사대용/게이너'
+                    result['식사대용/게이너'] = data['제품명']
                 elif bool(
                     list(
                         set(data["원료 성분"]) & set(standard_dict[0]["전체 원료"].split("\n"))
@@ -595,6 +606,7 @@ def small_classificate(standard_dict, mapping_dict, dataset_list):
                     pass
                 else:
                     result["예외"] = list()
+                print(data['원료 성분'])
                 result["예외"].append(data["제품명"])
                 data["대분류"] = "예외"
                 data["중분류"] = "예외"

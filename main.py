@@ -56,8 +56,8 @@ if __name__ == "__main__":
                     replaceText(data["원료 성분"], ",")
                     .replace("†", ",")
                     .replace("\n", ",")
-                    .replace('‡',',')
-                    .replace('and',',')
+                    .replace("‡", ",")
+                    .replace("and", ",")
                     .split(",")
                 )
 

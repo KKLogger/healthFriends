@@ -1,161 +1,5 @@
 import pandas as pd
 import re
-""" dataset_list -> data로 바꾸기 하나의 데이터를 어떤 대,중,소 분류를 갖는지 반환"""
-
-#
-# def large_classificate(standard_dict, mapping_dict, dataset_list):
-#     """
-#     :param standard_dict: 제품분류기준.csv -> dict
-#     :param mapping_dict: 원료번역.csv -> dict ( 반입 금지 물품 )
-#     :param dataset_list: 분류 할 데이터 dict list (각 원소는 csv 파일 -> dict )
-#     :return: 대분류가 완료되어 각 key가 대분류 이름인 값
-#     """
-#     """
-#     대분류 -> 소분류
-#     """
-#     result = dict()
-#     result["프로틴"] = list()
-#     result["운동보조제"] = list()
-#     result["다이어트보조제"] = list()
-#     result["반입금지"] = list()
-#     result["기타"] = list()
-#     result["예외"] = list()
-#     ban_list = list()
-#     print(set(standard_dict[0]["Unnamed: 1"].split("\n")))
-#     input()
-#     for item in mapping_dict[947:]:
-#         # temp = item['통일'].split("\n")
-#         # ban_list += temp
-#         ban_list.append(item["통일"])
-#
-#     for dataset in dataset_list:
-#         for data in dataset:
-#             try:
-#                 if bool(list(set(data["원료 성분"]) & set(ban_list))):  # 반입금지
-#                     result["반입금지"].append(data["제품명"])
-#                     data["대분류"] = "반입금지"
-#                     data["중분류"] = "반입금지"
-#                     data["소분류"] = "반입금지"
-#                 elif "바" in data["1회제공량"]:  # 기타
-#                     result["기타"].append(data["제품명"])
-#                     data["대분류"] = "기타"
-#                     data["중분류"] = "간식"
-#                     if "프로틴" in data["원료 성분"]:
-#                         data["소분류"] = "프로틴바"
-#                     else:
-#                         data["소분류"] = "에너지바"
-#                 elif "젤" in data["제품명"]:  # 기타
-#                     result["기타"].append(data["제품명"])
-#                     data["대분류"] = "기타"
-#                     data["중분류"] = "간식"
-#                     data["소분류"] = "케이크"
-#                 elif "칩" in data["1회제공량"]:  # 기타
-#                     result["기타"].append(data["제품명"])
-#                     data["대분류"] = "기타"
-#                     data["중분류"] = "간식"
-#                     data["소분류"] = "과자"
-#                 elif "아몬드" in data["제품명"]:  # 기타
-#                     result["기타"].append(data["제품명"])
-#                     data["대분류"] = "기타"
-#                     data["중분류"] = "간식"
-#                     data["소분류"] = "아몬드"
-#                 elif "케이크" in data["제품명"]:  # 기타
-#                     result["기타"].append(data["제품명"])
-#                     data["대분류"] = "기타"
-#                     data["중분류"] = "간식"
-#                     data["소분류"] = "케이크"
-#                 elif bool(
-#                     list(
-#                         set(data["원료 성분"])
-#                         & set(standard_dict[0]["Unnamed: 1"].split("\n"))
-#                     )
-#                 ):  # 프로틴
-#                     result["프로틴"].append(data["제품명"])
-#                     data["대분류"] = "프로틴"
-#                     data["중분류"] = "프로틴"
-#                     data["소분류"] = "프로틴"
-#                     if "크레아틴" in data["원료 성분"]:
-#                         data["중분류"] = "올인원"
-#                         data["소분류"] = "올인원"
-#
-#                     elif "물" in data["원료 성분"]:
-#                         data["중븐류"] = "RTD/드링크"
-#                         data["소분류"] = "RTD/드링크"
-#
-#                     elif bool(
-#                         list(
-#                             set(data["원료 성분"])
-#                             & set(standard_dict[0]["전체 원료"].split("\n"))
-#                         )
-#                     ):  # 유청단백
-#                         if bool(
-#                             list(
-#                                 set(data["원료 성분"])
-#                                 & set(standard_dict[8]["전체 원료"].split("\n"))
-#                             )
-#                         ):  # 혼합단백
-#                             data["중분류"] = "혼합단백"
-#                         else:
-#                             data["중분류"] = "유청단백"
-#                     elif bool(
-#                         list(
-#                             set(data["원료 성분"])
-#                             & set(standard_dict[8]["전체 원료"].split("\n"))
-#                         )
-#                     ):  # 우유단백
-#                         data["중분류"] = "우유단백"
-#                     elif bool(
-#                         list(
-#                             set(data["원료 성분"])
-#                             & set(standard_dict[12]["전체 원료"].split("\n"))
-#                         )
-#                     ):  # 식물성단백
-#                         data["중분류"] = "식물성단백"
-#                     else:
-#                         data["중분류"] = "예외"
-#                         data["소분류"] = "예외"
-#                 elif bool(
-#                     list(
-#                         set(data["원료 성분"])
-#                         & set(
-#                             standard_dict[19]["Unnamed: 1"]
-#                             .replace("/", "\n")
-#                             .split("\n")
-#                         )
-#                     )
-#                 ):  # 운동보조제
-#                     result["운동보조제"].append(data["제품명"])
-#                     data["대분류"] = "운동보조제"
-#                     data["중분류"] = "운동보조제"
-#                     data["소분류"] = "운동보조제"
-#                     if list(
-#                         set(data["원료 성분"]) & set(standard_dict[19]["전체 원료"].split("\n"))
-#                     ):  # 아미노산
-#                         data["중분류"] = "아미노산"
-#                     elif list(
-#                         set(data["원료 성분"]) & set(standard_dict[25]["전체 원료"].split("\n"))
-#                     ):  # 부스터
-#                         data["중분류"] = "부스터"
-#                     else:
-#                         data["중분류"] = "스포츠드링크"
-#                 elif bool(
-#                     list(
-#                         set(data["원료 성분"]) & set(standard_dict[34]["전체 원료"].split("\n"))
-#                     )
-#                 ):  # 다이어트보조제
-#                     result["다이어트보조제"].append(data["제품명"])
-#                     data["대분류"] = "다이어트보조제"
-#                     data["중분류"] = "다이어트보조제"
-#                     data["소분류"] = "다이어트보조제"
-#                 else:  # 예외
-#                     result["예외"].append(data["제품명"])
-#                     data["대분류"] = "예외"
-#                     data["중분류"] = "예외"
-#                     data["소분류"] = "예외"
-#             except Exception as e:
-#                 print(f"Error : {e}")
-#                 print(data["1회제공량"])
-#     return result
 
 
 def small_classificate(standard_dict, mapping_dict, dataset_list):
@@ -163,10 +7,7 @@ def small_classificate(standard_dict, mapping_dict, dataset_list):
     :param standard_dict: 제품분류기준.csv -> dict
     :param mapping_dict: 원료번역.csv -> dict ( 반입 금지 물품 )
     :param dataset_list: 분류 할 데이터 dict list (각 원소는 csv 파일 -> dict )
-    :return: 소분류 완료되어 각 key가 소분류 이름인 값
-    """
-    """
-    대분류 -> 소분류
+    :return: 소분류 완료되어 각 key가 소분류 이름인 값 , 각 데이터에 대분류,중분류,소분류 추가후 저장
     """
     result = dict()
     class_list = list()
@@ -190,12 +31,12 @@ def small_classificate(standard_dict, mapping_dict, dataset_list):
     for dataset in dataset_list:
         for data in dataset:
             # 성분 ( 단백질, 탄수화물 단위 통일 및 Nan Pass )
-            if type(data['단백질(g)']) == float or type(data['총 탄수화물(g)']) == float:
-                data['단백질(g)'] = 3
-                data['총 탄수화물(g)'] = 1
+            if type(data["단백질(g)"]) == float or type(data["총 탄수화물(g)"]) == float:
+                data["단백질(g)"] = 3
+                data["총 탄수화물(g)"] = 1
             else:
-                data['단백질(g)'] = re.findall('\d+',data['단백질(g)'])
-                data['총 탄수화물(g)'] = re.findall('\d+',data['총 탄수화물(g)'])
+                data["단백질(g)"] = re.findall("\d+", data["단백질(g)"])
+                data["총 탄수화물(g)"] = re.findall("\d+", data["총 탄수화물(g)"])
             # 분류 시작
             if bool(list(set(data["원료 성분"]) & set(ban_list))):  # 반입금지
                 result["반입금지"].append(data["제품명"])
@@ -245,10 +86,10 @@ def small_classificate(standard_dict, mapping_dict, dataset_list):
                     data["중븐류"] = "RTD/드링크"
                     data["소분류"] = "RTD/드링크"
                     result["RTD/드링크"] = data["제품명"]
-                elif data['단백질(g)'] <= data['총 탄수화물(g)'] * 2:
-                    data['중분류']  = '식사대용/게이너'
-                    data['소분류'] = '식사대용/게이너'
-                    result['식사대용/게이너'] = data['제품명']
+                elif data["단백질(g)"] <= data["총 탄수화물(g)"] * 2:
+                    data["중분류"] = "식사대용/게이너"
+                    data["소분류"] = "식사대용/게이너"
+                    result["식사대용/게이너"] = data["제품명"]
                 elif bool(
                     list(
                         set(data["원료 성분"]) & set(standard_dict[0]["전체 원료"].split("\n"))
@@ -330,7 +171,7 @@ def small_classificate(standard_dict, mapping_dict, dataset_list):
                         result["가수분해분리유청단백(WPIH)"] = data["제품명"]
                     else:
                         data["소분류"] = "유청단백기타"
-                        if '유청단백기타' in result.keys():
+                        if "유청단백기타" in result.keys():
                             pass
                         else:
                             result["유청단백기타"] = list()
@@ -378,7 +219,7 @@ def small_classificate(standard_dict, mapping_dict, dataset_list):
                         result["카제인"] = data["제품명"]
                     else:
                         data["소분류"] = "우유단백기타"
-                        if '우유단백기타' in result.keys():
+                        if "우유단백기타" in result.keys():
                             pass
                         else:
                             result["유청단백기타"] = list()
@@ -426,7 +267,7 @@ def small_classificate(standard_dict, mapping_dict, dataset_list):
                         result["현미"] = data["제품명"]
                     else:
                         data["소분류"] = "식물성단백기타"
-                        if '식물성단백기타' in result.keys():
+                        if "식물성단백기타" in result.keys():
                             pass
                         else:
                             result["식물성단백기타"] = list()
@@ -434,7 +275,8 @@ def small_classificate(standard_dict, mapping_dict, dataset_list):
                 else:
                     data["중분류"] = "프로틴예외"
                     data["소분류"] = "프로틴예외"
-                    if '프로틴예외' in result.keys():
+
+                    if "프로틴예외" in result.keys():
                         pass
                     else:
                         result["프로틴예외"] = list()
@@ -486,7 +328,7 @@ def small_classificate(standard_dict, mapping_dict, dataset_list):
                         result["HMB"].append(data["제품명"])
                     else:
                         data["소분류"] = "아미노산기타"
-                        if '아미노산기타' in result.keys():
+                        if "아미노산기타" in result.keys():
                             pass
                         else:
                             result["아미노산기타"] = list()
@@ -536,7 +378,7 @@ def small_classificate(standard_dict, mapping_dict, dataset_list):
                         result["아그마틴"].append(data["제품명"])
                     else:
                         data["소분류"] = "부스터기타"
-                        if '부스터기타' in result.keys():
+                        if "부스터기타" in result.keys():
                             pass
                         else:
                             result["부스터기타"] = list()
@@ -596,17 +438,18 @@ def small_classificate(standard_dict, mapping_dict, dataset_list):
                     result["그린커피추출물"].append(data["제품명"])
                 else:
                     data["소분류"] = "다이어트보조제기타"
-                    if '다이어트보조제기타' in result.keys():
+                    if "다이어트보조제기타" in result.keys():
                         pass
                     else:
                         result["다이어트보조제기타"] = list()
                     result["다이어트보조제기타"].append(data["제품명"])
             else:  # 예외
-                if '예외' in result.keys():
+                if "예외" in result.keys():
                     pass
                 else:
                     result["예외"] = list()
-                print(data['원료 성분'])
+                print(data["원료 성분"])
+                input()
                 result["예외"].append(data["제품명"])
                 data["대분류"] = "예외"
                 data["중분류"] = "예외"

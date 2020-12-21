@@ -32,5 +32,5 @@ def get_translate_dict(df):
             data["이명"] = [""]
         else:
             data["이명"] = data["이명"].split("\n")
-            data['이명'] = [x.lower() for x in data['이명']]
+            data["이명"] = [x.lower() for x in data["이명"]]
     return dict_data

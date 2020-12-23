@@ -7,21 +7,19 @@ import math
 import re
 
 
-def load_dataset(dataset_name_list):
+def load_dataset(dataset_name):
     """
     :param dataset_name_list: dataset이 저장되어 있는 엑셀파일 이름 리스트
     :return: csv 파일 -> DF -> dict
     """
-    result = list()
-    for dataset_name in dataset_name_list:
-        temp = pd.read_excel(f"data/{dataset_name}")
-        # Nan 값 삭제
-        temp = temp[temp["원료 성분"].notnull()]
-        temp = temp[temp["1회제공량"].notnull()]
-        temp = temp[temp["제품명"].notnull()]
-        temp = temp.to_dict("records")
+    result = pd.read_excel(f"data/{dataset_name}")
+    # Nan 값 삭제
+    result = result[result["원료 성분"].notnull()]
+    result = result[result["1회제공량"].notnull()]
+    result = result[result["제품명"].notnull()]
+    result = result.to_dict("records")
 
-        result.append(temp)
+
     return result
 
 
@@ -43,15 +41,16 @@ if __name__ == "__main__":
         "02.아이허브.xlsx",
         "03.마이프로틴.xlsx",
         "04.오플.xlsx",
-        "06.몬스터마트.xlsx",
+        "06.몬스터마트.xlsx"
     ]
-    dataset_list = load_dataset(dataset_name_list)
     """ 각 데이터에 번역함수 호출"""
     l_temp = list()
-    for dataset in dataset_list:
+    for dataset_name in dataset_name_list:
+        dataset = load_dataset(dataset_name)
         temp = list()
         for data in dataset:
             try:
+                data['유통사'] = dataset_name.split('.')[1]
                 data["원료 성분"] = (
                     replaceText(data["원료 성분"], ",")
                     .replace("†", ",")

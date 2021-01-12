@@ -19,7 +19,6 @@ def load_dataset(dataset_name):
     result = result[result["제품명"].notnull()]
     result = result.to_dict("records")
 
-
     return result
 
 
@@ -41,7 +40,7 @@ if __name__ == "__main__":
         "02.아이허브.xlsx",
         "03.마이프로틴.xlsx",
         "04.오플.xlsx",
-        "06.몬스터마트.xlsx"
+        "06.몬스터마트.xlsx",
     ]
     """ 각 데이터에 번역함수 호출"""
     l_temp = list()
@@ -50,7 +49,7 @@ if __name__ == "__main__":
         temp = list()
         for data in dataset:
             try:
-                data['유통사'] = dataset_name.split('.')[1]
+                data["유통사"] = dataset_name.split(".")[1]
                 data["원료 성분"] = (
                     replaceText(data["원료 성분"], ",")
                     .replace("†", ",")
@@ -61,11 +60,10 @@ if __name__ == "__main__":
                 )
 
                 data["원료 성분"] = [
-                    word_translater.word_translater(translate_dict, x)
-                    .strip()
-                    .replace("'", "")
+                    word_translater.word_translater(translate_dict, x).strip()
                     for x in data["원료 성분"]
                 ]
+
                 temp.append(data)
             except Exception as e:
                 print(f"Error : {e}")
@@ -76,5 +74,10 @@ if __name__ == "__main__":
     result = item_classificater.small_classificate(
         standard_dict, mapping_dict, dataset_list
     )
+
     with open("test.json", "w", encoding="utf-8-sig") as f:
         json.dump(result, f, ensure_ascii=False)
+    dataset_list = sum(dataset_list, [])
+    result = pd.DataFrame.from_dict(dataset_list)
+    result = result[['제품명','원료 성분','1회제공량','총 탄수화물(g)','단백질(g)','대분류','중분류','소분류']]
+    result.to_excel("test.xlsx")

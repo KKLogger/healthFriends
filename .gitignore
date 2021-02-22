@@ -1,3 +1,6 @@
-/crawling/backup/
-/crawling/data/
-/crawling/image/
+*.xlsx
+*.pickle
+*.jpg
+*.csv
+*.pdf
+*.json

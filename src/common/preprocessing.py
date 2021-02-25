@@ -1,5 +1,5 @@
 import pandas as pd
-
+import math
 
 def load_json(file):
     with open(f"data/{file}.json", encoding="utf-8-sig") as f:
@@ -151,14 +151,36 @@ def substract_word(sentence, start, end):
 
 
 if __name__ == "__main__":
-    result = pd.read_csv("../../data/classification/4개 외국사이트_분류.csv")
-    result = result[result["원료 성분"].notnull()]
-    result = result[result["1회제공량"].notnull()]
-    result = result[result["제품명"].notnull()]
+    result = pd.read_excel("../../data/classification/쿠팡_수집된_외국사이트_병합본.xlsx")
+    #result = result[result["원료 성분"].notnull()]
+    # result = result[result["1회제공량"].notnull()]
+    # result = result[result["제품명"].notnull()]
     result = result.to_dict("records")
+    for data in result :
+        if data['원료 성분'] == math.nan or type(data['원료 성분']) == float:
+            data['원료 성분'] = '값 없음'
+        if data['1회제공량'] == math.nan or type(data['1회제공량']) == float:
+            data['1회제공량'] = '값 없음'
+        if data['제품명'] == math.nan or type(data['제품명']) == float:
+            data['제품명'] = '값 없음'
+
+
+    # result = result.to_dict("records")
     ingredient_list = get_ingredient_list()
     for data in result:
-        data['원료 성분(단어)'] = substract_ingredient(data['원료 성분'],ingredient_list)
+        ingr_words = substract_ingredient(data['원료 성분'], ingredient_list)
+        if len(ingr_words) == 0:
+            data["원료 성분(단어)"] = []
+        if len(ingr_words) <= 2 and "조" in ingr_words:
+            data["원료 성분(단어)"] = []
+        else:
+            data["원료 성분(단어)"] = ingr_words
 
     result = pd.DataFrame.from_dict(result)
-    result.to_excel('../../data/classification/4개_외국사이트_종합.xlsx')
+    writer = pd.ExcelWriter(
+        "D:/UpennSolution/health_friends/data/classification/clean_coupang.xlsx",
+        engine="xlsxwriter",
+        options={"strings_to_urls": False},
+    )
+    result.to_excel(writer)
+    writer.save()

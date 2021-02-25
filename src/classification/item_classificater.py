@@ -31,22 +31,25 @@ def small_classificate(standard_dict, mapping_dict, dataset_list):
     for dataset in dataset_list:
         for data in dataset:
             # 성분 ( 단백질, 탄수화물 단위 통일 및 Nan Pass )
-
+            temp1 = data['단백질(g)']
+            temp2 = data['총 탄수화물(g)']
             try:
                 if data["단백질(g)"] is None or data["총 탄수화물(g)"] is None:
                     data["단백질(g)"] = "3"
                     data["총 탄수화물(g)"] = "1"
-                elif math.isnan(data['단백질(g)']) or math.isnan(data['총 탄수화물(g)']):
+                if data['단백질(g)'] == math.nan or data['총 탄수화물(g)'] == math.nan:
                     data["단백질(g)"] = "3"
                     data["총 탄수화물(g)"] = "1"
-                elif type(data["단백질(g)"]) == str and type(data["총 탄수화물(g)"]) == str:
+                if type(data["단백질(g)"]) == str and type(data["총 탄수화물(g)"]) == str:
                     data["단백질(g)"] = re.findall("\d+", data["단백질(g)"])[0]
                     data["총 탄수화물(g)"] = re.findall("\d+", data["총 탄수화물(g)"])[0]
-                else:
-                    pass
+                data['단백질(g)'] = float(data['단백질(g)'])
+                data['총 탄수화물(g)'] = float(data['총 탄수화물(g)'])
             except Exception as e :
                 print(e,'in 단백질 탄수화물 분류')
                 print([data['단백질(g)'],data['총 탄수화물(g)']])
+                data["단백질(g)"] = "3"
+                data["총 탄수화물(g)"] = "1"
 
             # 분류 시작
             if bool(list(set(data["원료 성분(단어)"]) & set(ban_list))):  # 반입금지
@@ -550,4 +553,8 @@ def small_classificate(standard_dict, mapping_dict, dataset_list):
                 data["대분류"] = "예외"
                 data["중분류"] = "예외"
                 data["소분류"] = "예외"
+
+
+            data['단백질(g)'] = temp1
+            data['총 탄수화물(g)'] = temp2
     return result

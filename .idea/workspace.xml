@@ -2,47 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4584556-9afb-4bd2-ac9b-5217fabe92ab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/health_friends.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/coupang/processing_df.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/toUpenn/crawling.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/toUpenn/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/toUpenn/option_urls.pickle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/toUpenn/preprocessing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/toUpenn/원료 번역.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/healthFriends.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsonSchemas.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HealthFriends 이슈.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling/.idea/crawling.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling/crawling.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling/get_urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling/save_image.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/01.쿠팡.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/02.아이허브.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/03.마이프로틴.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/04.오플.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/06.몬스터마트.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/데이터 바우처(예시).xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/분류기준 원료이름모음.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/원료 번역.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/제품 분류 기준(전송용).xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/제품 분류.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/제품 항목, 사이트 및 제품 개수.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/item_classificater.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testJson.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/word_translater.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classification/item_classificater.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/classification/item_classificater.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classification/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/classification/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/preprocessing.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,6 +71,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="item_classificater" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="health_friends" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/classification" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/classification/item_classificater.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="health_friends" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -130,7 +115,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="preprocessing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="health_friends" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -138,34 +123,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/toUpenn" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/common" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/toUpenn/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="health_friends" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/coupang" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/coupang/main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/common/preprocessing.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -199,10 +162,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main (1)" />
+        <item itemvalue="Python.item_classificater" />
+        <item itemvalue="Python.preprocessing" />
         <item itemvalue="Python.processing_df" />
         <item itemvalue="Python.check_pickle" />
-        <item itemvalue="Python.main (2)" />
-        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
@@ -221,6 +184,8 @@
       <workItem from="1613692565121" duration="467000" />
       <workItem from="1613721188950" duration="8000" />
       <workItem from="1613831942244" duration="594000" />
+      <workItem from="1614167792625" duration="7903000" />
+      <workItem from="1614258011893" duration="53000" />
     </task>
     <servers />
   </component>
@@ -229,11 +194,11 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/health_friends$processing_df.coverage" NAME="processing_df Coverage Results" MODIFIED="1613565836080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/coupang" />
-    <SUITE FILE_PATH="coverage/health_friends$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1613566664761" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/classification" />
+    <SUITE FILE_PATH="coverage/health_friends$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1614175309418" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/classification" />
     <SUITE FILE_PATH="coverage/health_friends$check_pickle.coverage" NAME="check_pickle Coverage Results" MODIFIED="1613561339241" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/coupang" />
-    <SUITE FILE_PATH="coverage/health_friends$preprocessing.coverage" NAME="preprocessing Coverage Results" MODIFIED="1613482512453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/common" />
     <SUITE FILE_PATH="coverage/health_friends$main.coverage" NAME="main Coverage Results" MODIFIED="1613524036726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/coupang" />
+    <SUITE FILE_PATH="coverage/health_friends$preprocessing.coverage" NAME="preprocessing Coverage Results" MODIFIED="1614171378302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/common" />
     <SUITE FILE_PATH="coverage/health_friends$crawling.coverage" NAME="crawling Coverage Results" MODIFIED="1613394381592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/coupang" />
-    <SUITE FILE_PATH="coverage/health_friends$item_classificater.coverage" NAME="item_classificater Coverage Results" MODIFIED="1613483776132" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/classification" />
+    <SUITE FILE_PATH="coverage/health_friends$item_classificater.coverage" NAME="item_classificater Coverage Results" MODIFIED="1614174377772" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/classification" />
   </component>
 </project>

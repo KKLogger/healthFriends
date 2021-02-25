@@ -44,7 +44,8 @@ if __name__ == "__main__":
         # "MyProtein.xlsx",
         # "Ople.xlsx",
         # "4개_외국사이트_종합.xlsx"
-        "basic_df_dict.xlsx"
+        # "basic_df_dict.xlsx"
+        "clean_coupang.xlsx"
     ]
     """ 각 데이터에 번역함수 호출"""
     l_temp = list()
@@ -94,7 +95,7 @@ if __name__ == "__main__":
     # result.to_excel("../../data/classification/분류결과.xlsx")
 
     writer = pd.ExcelWriter(
-        "D:/UpennSolution/health_friends/data/coupang/basic_df_dict.xlsx",
+        "D:/UpennSolution/health_friends/data/classification/result_coupang.xlsx",
         engine="xlsxwriter",
         options={"strings_to_urls": False},
     )
